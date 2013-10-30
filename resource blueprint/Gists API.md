@@ -1,0 +1,169 @@
+# Gists API
+Our Gists API.
+
+## Entry Point
+[Gists.list][]
+
+## Resource Gists
+Resource Gists is a list of individual Gist pastes.
+
+### Attributes, Properites
+The properities of a gist collection.
+
++ `total_count` (number) - The count of gists in the collection.
++ `items` (array) - The array of embedded gist entities.
+
+### Affordances, Transition, Actions, Link Relations
+Link relations of a gist collection.
+
++ Metadata
+
++ `list` - Returns the current resource.
+
++ `create` - Creates a gists, adds a gist to collection.
+	+ Attributes
+		+ description (string) - Description of the gist.
+		+ content (string) - Content of the gist.
+
++ `search` - Filters results based on parameters.
+	+ Parameters
+		+ search_by (string) - Keyword to search on.
+		+ search_by_attribute (string) - Attribute to apply search to.
+			+ Values
+				+ `description`
+				+ `content`
++ `first`
++ `previous`
++ `next` 
++ `last`
+
+### States
+States / state machine of a gist collection.
+
++ `collection` (entry point) - Lorem Ipsum
+	+ Affordances, Transition, Actions, Link Relations
+		+ `list` (self) -> collection
+		+ `create` -> [Gist#active][]
+			+ Conditions, Permissions, Rights
+				+ `can_create`
+				+ `can_update`
+		+ `search` -> `navigation`
+		+ `next` -> `navigation`
+		+ `last` -> `navigation`
+
++ `navigation`
+	+ Affordances, Transition, Actions, Link Relations
+		+ search (self) -> navigation
+		+ list -> collection
+		+ create -> [Gist#active][]
+			+ Conditions, Permissions, Rights
+				+ can_create
+				+ can_update
+		+ first -> navigation
+		+ previous -> navigation
+		+ next -> navigation
+		+ last -> navigation
+
+---
+
+### HTTP
+HTTP protocol-specific implementation. 
+
++ list: GET /gists
+	+ Response 200
+		
+		[Gists][]
+
++ create: POST /gists
+	+ Request (application/json)
+
+	        {
+	            "description": "Description of Gist",
+	            "content": "String content"
+	        }
+
+	+ Response 201
+
+	    [Gist][]
+
++ search: GET /gists{?search_by,search_by_attribute}
+	+ Response 200
+
+		[Gists][]
+
++ first: GET /gists?page=1{per_page}
+	+ Response 200
+
+		[Gists][]
+
++ previous: GET /gists ... 
+	+ Response 200
+
+		[Gists][]		
+
++ next: GET /gists ...
+	+ Response 200
+
+		[Gists][]
+
++ last: GET /gists ...
+	+ Response 200
+
+		[Gists][]
+
+### TCP
+...
+
+### COAP
+...
+
+### <other protocol>
+...
+
+### Media Types
++ application/json
+	
+	```json
+	{ ... }
+	```
+
++ application/hal+json
++ application/vnd.siren+json
+
+## Resource Gist
+
+### Attributes
++ id
++ description
++ content
++ created_at
++ author
+	+ name
+
+### Affordances
++ show 
++ edit
++ delete
++ archive
++ restore
++ star
++ unstar
++ author
+
+### States
++ active
+	+ Affordances, Transition, Actions, Link Relations
+		+ show (self) -> active
+		+ edit -> active
+		+ delete (exit point)
+		+ archive -> archived
+		+ restore -> active
+		+ star -> active
+		+ unstar -> active
+		+ author -> [Author][]
+
++ archived
+	+ Affordances, Transition, Actions, Link Relations
+		+ show (self) -> archived
+		+ restore -> active
+		+ author -> [Author][]
