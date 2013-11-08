@@ -1,7 +1,7 @@
 # Gists API
 Our Gists API.
 
-## Entry Point
+## API Entry Point
 [Gists.list][]
 
 ## Resource Gists
@@ -10,32 +10,30 @@ Resource Gists is a list of individual Gist pastes.
 ### Attributes, Properites
 The properities of a gist collection.
 
-+ `total_count` (number) - The count of gists in the collection.
-+ `items` (array) - The array of embedded gist entities.
++ total_count (number) - The count of gists in the collection.
++ items (array) - The array of embedded gist entities.
 
 ### Affordances, Transition, Actions, Link Relations
 Link relations of a gist collection.
 
-+ Metadata
++ list - Returns the current resource.
 
-+ `list` - Returns the current resource.
-
-+ `create` - Creates a gists, adds a gist to collection.
++ create - Creates a gists, adds a gist to collection.
 	+ Attributes
 		+ description (string) - Description of the gist.
 		+ content (string) - Content of the gist.
 
-+ `search` - Filters results based on parameters.
++ search - Filters results based on parameters.
 	+ Parameters
 		+ search_by (string) - Keyword to search on.
 		+ search_by_attribute (string) - Attribute to apply search to.
 			+ Values
-				+ `description`
-				+ `content`
-+ `first`
-+ `previous`
-+ `next` 
-+ `last`
+				+ description
+				+ content
++ first
++ previous
++ next
++ last
 
 ### States
 States / state machine of a gist collection.
@@ -63,8 +61,6 @@ States / state machine of a gist collection.
 		+ previous -> navigation
 		+ next -> navigation
 		+ last -> navigation
-
----
 
 ### HTTP
 HTTP protocol-specific implementation. 
