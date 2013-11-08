@@ -19,17 +19,17 @@ Link relations of a gist collection.
 + list - Returns the current resource.
 
 + create - Creates a gists, adds a gist to collection.
-	+ Attributes
-		+ description (string) - Description of the gist.
-		+ content (string) - Content of the gist.
+    + Attributes
+        + description (string) - Description of the gist.
+        + content (string) - Content of the gist.
 
 + search - Filters results based on parameters.
-	+ Parameters
-		+ search_by (string) - Keyword to search on.
-		+ search_by_attribute (string) - Attribute to apply search to.
-			+ Values
-				+ description
-				+ content
+    + Parameters
+        + search_by (string) - Keyword to search on.
+        + search_by_attribute (string) - Attribute to apply search to.
+            + Values
+                + description
+                + content
 + first
 + previous
 + next
@@ -39,73 +39,73 @@ Link relations of a gist collection.
 States / state machine of a gist collection.
 
 + collection (entry point) - Lorem Ipsum
-	+ Affordances
-		+ list (self) -> collection
-		+ create -> [Gist#active][]
-			+ Conditions
-				+ can_create
-				+ can_update
-		+ search -> navigation
-		+ next -> navigation
-		+ last -> navigation
+    + Affordances
+        + list (self) -> collection
+        + create -> [Gist#active][]
+            + Conditions
+                + can_create
+                + can_update
+        + search -> navigation
+        + next -> navigation
+        + last -> navigation
 
 + navigation
-	+ Affordances
-		+ search (self) -> navigation
-		+ list -> collection
-		+ create -> [Gist#active][]
-			+ Conditions, Permissions, Rights
-				+ can_create
-				+ can_update
-		+ first -> navigation
-		+ previous -> navigation
-		+ next -> navigation
-		+ last -> navigation
+    + Affordances
+        + search (self) -> navigation
+        + list -> collection
+        + create -> [Gist#active][]
+            + Conditions, Permissions, Rights
+                + can_create
+                + can_update
+        + first -> navigation
+        + previous -> navigation
+        + next -> navigation
+        + last -> navigation
 
 ### HTTP
 HTTP protocol-specific implementation. 
 
 + list: GET /gists
-	+ Response 200
-		
-		[Gists][]
+    + Response 200
+        
+        [Gists][]
 
 + create: POST /gists
-	+ Request (application/json)
+    + Request (application/json)
 
-	        {
-	            "description": "Description of Gist",
-	            "content": "String content"
-	        }
+            {
+                "description": "Description of Gist",
+                "content": "String content"
+            }
 
-	+ Response 201
+    + Response 201
 
-	    [Gist][]
+        [Gist][]
 
 + search: GET /gists{?search_by,search_by_attribute}
-	+ Response 200
+    + Response 200
 
-		[Gists][]
+        [Gists][]
 
 + first: GET /gists?page=1{per_page}
-	+ Response 200
+    + Response 200
 
-		[Gists][]
+        [Gists][]
 
 + previous: GET /gists ... 
-	+ Response 200
+    + Response 200
 
-		[Gists][]		
+        [Gists][]       
 
 + next: GET /gists ...
-	+ Response 200
+    + Response 200
 
-		[Gists][]
+        [Gists][]
 
 + last: GET /gists ...
-	+ Response 200
+    + Response 200
 
-		[Gists][]
+        [Gists][]
 
 ### TCP
 ...
@@ -118,10 +118,10 @@ HTTP protocol-specific implementation.
 
 ### Media Types
 + application/json
-	
-	```json
-	{ ... }
-	```
+    
+    ```json
+    { ... }
+    ```
 
 + application/hal+json
 + application/vnd.siren+json
@@ -134,7 +134,7 @@ HTTP protocol-specific implementation.
 + content
 + created_at
 + author
-	+ name
+    + name
 
 ### Affordances
 + show 
@@ -146,16 +146,16 @@ HTTP protocol-specific implementation.
 
 ### States
 + active
-	+ Affordances, Transition, Actions, Link Relations
-		+ show (self) -> active
-		+ edit -> active
-		+ delete (exit point)
-		+ archive -> archived
-		+ restore -> active
-		+ author -> [Author][]
+    + Affordances, Transition, Actions, Link Relations
+        + show (self) -> active
+        + edit -> active
+        + delete (exit point)
+        + archive -> archived
+        + restore -> active
+        + author -> [Author][]
 
 + archived
-	+ Affordances, Transition, Actions, Link Relations
-		+ show (self) -> archived
-		+ restore -> active
-		+ author -> [Author][]
+    + Affordances, Transition, Actions, Link Relations
+        + show (self) -> archived
+        + restore -> active
+        + author -> [Author][]
