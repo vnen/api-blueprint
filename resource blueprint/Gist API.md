@@ -117,15 +117,14 @@ HTTP protocol-specific implementation.
 ...
 
 ### Media Types
++ application/hal+json
++ application/vnd.siren+json
 + application/json
     
     ```json
     { ... }
     ```
-
-+ application/hal+json
-+ application/vnd.siren+json
-
+    
 ## Resource Gist
 
 ### Attributes
@@ -152,10 +151,10 @@ HTTP protocol-specific implementation.
         + delete (exit point)
         + archive -> archived
         + restore -> active
-        + author -> [Author][]
+        + author -> [Author#show][]
 
 + archived
     + Affordances, Transition, Actions, Link Relations
         + show (self) -> archived
         + restore -> active
-        + author -> [Author][]
+        + author -> [Author#show][]
