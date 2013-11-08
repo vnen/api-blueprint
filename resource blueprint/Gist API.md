@@ -92,17 +92,17 @@ HTTP protocol-specific implementation.
 
         [Gists][]
 
-+ previous: GET /gists ... 
++ previous: GET /gists?{page,per_page} 
     + Response 200
 
         [Gists][]       
 
-+ next: GET /gists ...
++ next: GET /gists?{page,per_page}
     + Response 200
 
         [Gists][]
 
-+ last: GET /gists ...
++ last: GET /gists?{page,per_page}
     + Response 200
 
         [Gists][]
@@ -124,7 +124,7 @@ HTTP protocol-specific implementation.
     ```json
     { ... }
     ```
-    
+
 ## Resource Gist
 
 ### Attributes
