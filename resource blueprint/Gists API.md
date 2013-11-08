@@ -7,13 +7,13 @@ Our Gists API.
 ## Resource Gists
 Resource Gists is a list of individual Gist pastes.
 
-### Attributes, Properites
+### Attributes
 The properities of a gist collection.
 
 + total_count (number) - The count of gists in the collection.
 + items (array) - The array of embedded gist entities.
 
-### Affordances, Transition, Actions, Link Relations
+### Affordances
 Link relations of a gist collection.
 
 + list - Returns the current resource.
@@ -38,19 +38,19 @@ Link relations of a gist collection.
 ### States
 States / state machine of a gist collection.
 
-+ `collection` (entry point) - Lorem Ipsum
-	+ Affordances, Transition, Actions, Link Relations
-		+ `list` (self) -> collection
-		+ `create` -> [Gist#active][]
-			+ Conditions, Permissions, Rights
-				+ `can_create`
-				+ `can_update`
-		+ `search` -> `navigation`
-		+ `next` -> `navigation`
-		+ `last` -> `navigation`
++ collection (entry point) - Lorem Ipsum
+	+ Affordances
+		+ list (self) -> collection
+		+ create -> [Gist#active][]
+			+ Conditions
+				+ can_create
+				+ can_update
+		+ search -> navigation
+		+ next -> navigation
+		+ last -> navigation
 
-+ `navigation`
-	+ Affordances, Transition, Actions, Link Relations
++ navigation
+	+ Affordances
 		+ search (self) -> navigation
 		+ list -> collection
 		+ create -> [Gist#active][]
@@ -142,8 +142,6 @@ HTTP protocol-specific implementation.
 + delete
 + archive
 + restore
-+ star
-+ unstar
 + author
 
 ### States
@@ -154,8 +152,6 @@ HTTP protocol-specific implementation.
 		+ delete (exit point)
 		+ archive -> archived
 		+ restore -> active
-		+ star -> active
-		+ unstar -> active
 		+ author -> [Author][]
 
 + archived
