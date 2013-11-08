@@ -82,3 +82,6 @@ Where possible use an undecorated plain text. In the case of a clash with keywor
 + 	Reference to a resource state: `[<resource>#<state>][]`
 + 	Reference to a resource affordance: `[<resource>.<affordance>][]`
 
+
+## Acknowledgements
+Special thanks to @fosdev for his tremendous contribution as well as images of the Gist State Machine. 
