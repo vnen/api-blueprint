@@ -17,13 +17,18 @@ An entry point to Resource Blueprint Gist API is the `Gists` resource in its `co
 > **Note:** Collection essentially servers a factory for individual entities.
 
 ### Gist Resource
+The `Gist` resource, created by the `create` affordance of the `Gists` Resource has following two states: `active` and `archived` each with appropriate set of affordances:
 
 ![fig2](assets/Gist%20State%20Machine%20002.png)
 
-
-### Embedded Entities 
+### Embedded Entities
+Finally a `Gist` resource embedded in the `Gists` resource can be accessed via the `self` affordance of the particular embedded entity forming the complete API state machine:
 
 ![fig3](assets/Gist%20State%20Machine%20003.png)
+
+
+---
+
 
 ---
 
