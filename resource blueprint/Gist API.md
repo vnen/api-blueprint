@@ -75,7 +75,7 @@ HTTP protocol-specific implementation.
 
             {
                 "description": "Description of Gist",
-                "content": "String content"
+                "content": "String Content"
             }
 
     + Response 201
