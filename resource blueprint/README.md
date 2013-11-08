@@ -34,13 +34,15 @@ Finally a `Gist` resource embedded in the `Gists` resource can be accessed via t
 ### Keywords
 New keywords introduced in the Resource Blueprint are:
 
-+ 	`API Entry Point` - Denotes state machine entry point referencing a resource and its state.
++ 	`API Entry Point` (optional) - Denotes state machine entry point referencing a resource and its state.
 
 + 	`Resource` - Definition of a resource e.g. `Resource <resource name>`.
 
 + 	`Attributes` - Definition of resource attributes. Alt keyword: `Properites`.
 
-+ 	`Affordances` - Definition of **all** resource's affordances. Alt keywords: `Transition`, `Actions` or `Link Relations`.
++ 	`Affordances` (optional) - Definition of **all** resource's affordances. Alt keywords: `Transition`, `Actions` or `Link Relations`.
+		
+	Optional: A resource definition without any affordance should assume one default "show/self" affordance.
 
 + 	`States` (optional) - definition of resource states and state transitions invoked using affordances.
 	Each state should lists all available affordances the final state of using the relevant affordance in format:
@@ -51,19 +53,29 @@ New keywords introduced in the Resource Blueprint are:
 
     The new state might be a reference to another resource state (see Referencing Syntax bellow). One affordance per state should be marked as `self` to represent the default "retrieve" affordance. 
 
+    Optional: While defining states radically improves experience and possibilities in the following Resource Blueprint tool chain it should be valid to define a resource without states definition (and therefore without the `API Entry Point`). 
+
 + 	`Conditions` (optional) - list of conditions for an affordance to be available in the respective state.
 	Associated with business rules tied to an affordance being available or present in a response. 
 	Alt keywords: `Permissions` or `Rights`
 
+	Optional: Conditional affordances are completely optional.
+
 +	`HTTP`, `TCP`, `COAP`, `<other protocol>` (optional) - Protocol specific implementation of respective affordances.
+
+	Optional: Protocol section should be optional. If not present, in the case of HTTP, a default method (GET?) should be expected with a default URI constructed from the resource name and possibly affordance parameters and or name. To be decided. 
 
 +	`Media Types` (optional) - List of supported media type representation of respective resource attributes and affordances.
 	Might include an explicit example asset.
 
+	Optional: If media types are not present a default media type should be provided possibly `application/hal+json` and `application/vnd.siren+json`
+
+	If a media type is specified by no explicit example is provided a default representation using attributes and affordances should be provided.
+
 > **Note:** Consider using alt keywords to improve clarity for majority of users.
 
 ### Naming Attributes and Affordances
-Where possible use an undecorated plain text. In the case of a clash with a keyword and/or need for escaping to not collide with Markdown formatting use [Markdown code span element syntax](http://daringfireball.net/projects/markdown/syntax#code) e.g. `\`Attributes\``.
+Where possible use an undecorated plain text. In the case of a clash with keyword and/or the need for escaping (to not collide with Markdown syntax) use [Markdown code span element syntax](http://daringfireball.net/projects/markdown/syntax#code) e.g. `` `Attributes` ``.
 
 ### Referencing Syntax
 + 	Reference to a resource representation: `[<resource>][]`
