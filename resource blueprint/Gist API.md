@@ -118,7 +118,9 @@ HTTP protocol-specific implementation.
 
 ### Media Types
 + application/hal+json
+
 + application/vnd.siren+json
+
 + application/json
     
     ```json
@@ -145,7 +147,7 @@ HTTP protocol-specific implementation.
 
 ### States
 + active
-    + Affordances, Transition, Actions, Link Relations
+    + Affordances
         + show (self) -> active
         + edit -> active
         + delete (exit point)
@@ -154,7 +156,7 @@ HTTP protocol-specific implementation.
         + author -> [Author#show][]
 
 + archived
-    + Affordances, Transition, Actions, Link Relations
+    + Affordances
         + show (self) -> archived
         + restore -> active
         + author -> [Author#show][]
