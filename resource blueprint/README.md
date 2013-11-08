@@ -7,16 +7,23 @@ As an use-case API the Resource Blueprint uses [Gist Fox API](../examples/Gist%2
 The actual proposal source can be found in the [Gist API.md](Gist%20API.md) file.
 
 ## Gist State Machine
+
+### Gists Resource 
 An entry point to Resource Blueprint Gist API is the `Gists` resource in its `collection` state. This resource has two states: `collection` and 
-`navigation`. 
+`navigation`:
 
-![fig1](Gist%20State%20Machine%20001.png)
-
+![fig1](assets/Gist%20State%20Machine%20001.png)
 
 > **Note:** Collection essentially servers a factory for individual entities.
 
+### Gist Resource
+
+![fig2](assets/Gist%20State%20Machine%20002.png)
 
 
+### Embedded Entities 
+
+![fig3](assets/Gist%20State%20Machine%20003.png)
 
 ---
 
