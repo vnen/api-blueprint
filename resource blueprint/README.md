@@ -1,12 +1,10 @@
 # Resource Blueprint
-A proposal of resource-oriented, protocol-independent [API Blueprint](http://apiblueprint.org). This proposal is focused on modeling API resources, its attributes, affordances and an API state machine.
+Initial proposal of resource-oriented, protocol-independent [API Blueprint](http://apiblueprint.org). Focused on modeling API resources, its attributes, affordances and an API state machine.
 
 ## Use Case API
-As an use-case API the Resource Blueprint uses [Gist Fox API](../examples/Gist%20Fox%20API.md). To demonstrate the description of the API state machine the Gist Fox API is extended with additional resource states.
+As a use-case API this proposal is built on [Gist Fox API](../examples/Gist%20Fox%20API.md). To demonstrate the description of the API state machine the Gist Fox API is extended with additional resource states.
 
-The actual proposal can be found in the [Gist API.md](Gist%20API.md) file. Refer to [Resource Blueprint Syntax](#syntax) for explanation of the syntax constructs. 
-
-To view the source of the Gist API check its [raw version](https://raw.github.com/apiaryio/api-blueprint/resource-blueprint/resource%20blueprint/Gist%20API.md).
+The actual proposed blueprint can be found in the [Gist API.md](Gist%20API.md) file. To view the source of the Gist API check its [raw version](https://raw.github.com/apiaryio/api-blueprint/resource-blueprint/resource%20blueprint/Gist%20API.md). Refer to [Resource Blueprint Syntax](#syntax) for explanation of new syntax constructs.
 
 ## Gist State Machine
 
@@ -16,17 +14,19 @@ An entry point to Resource Blueprint Gist API is the `Gists` resource in its `co
 
 ![fig1](assets/Gist%20State%20Machine%20001.png)
 
-> **Note:** Collection essentially servers as a factory for individual entities.
+> **Note:** Collection also serves as a factory for individual entities.
 
 ### Gist Resource
-The `Gist` resource, created by the `create` affordance of the `Gists` Resource has following two states: `active` and `archived` each with appropriate set of affordances:
+A `Gist` resource created by the `Gists`'s `create` affordance has following two states: `active` and `archived`:
 
 ![fig2](assets/Gist%20State%20Machine%20002.png)
 
 ### Embedded Entities
-Finally a `Gist` resource embedded in the `Gists` resource can be accessed via the `self` affordance of the particular embedded entity forming the complete API state machine:
+Finally, a `Gist` resource embedded in the `items` attribute of a `Gists` resource can be accessed via its `self` affordance:
 
 ![fig3](assets/Gist%20State%20Machine%20003.png)
+
+> **Note:** The `Gist` Resource also specifies an undefined `Author` affordance. This is inte
 
 <a name="syntax"></a>
 ## Resource Blueprint Syntax
