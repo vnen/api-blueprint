@@ -40,9 +40,9 @@ New keywords introduced in the Resource Blueprint are:
 
 + 	`Attributes` - Definition of resource attributes. Alt keyword: `Properites`.
 
-+ 	`Affordances` - Definition of **all** resource's affordances. Alt keywords: `Transition`, `Actions` and `Link Relations`.
++ 	`Affordances` - Definition of **all** resource's affordances. Alt keywords: `Transition`, `Actions` or `Link Relations`.
 
-+ 	`States` - definition of resource states and state transitions invoked using affordances.
++ 	`States` (optional) - definition of resource states and state transitions invoked using affordances.
 	Each state should lists all available affordances the final state of using the relevant affordance in format:
 
     ```
@@ -51,17 +51,22 @@ New keywords introduced in the Resource Blueprint are:
 
     The new state might be a reference to another resource state (see Referencing Syntax bellow). One affordance per state should be marked as `self` to represent the default "retrieve" affordance. 
 
-+ 	`Conditions` - list of conditions for an affordance to be available in the respective state.
++ 	`Conditions` (optional) - list of conditions for an affordance to be available in the respective state.
 	Associated with business rules tied to an affordance being available or present in a response. 
-	Alt keywords: `Permissions` and `Rights`
+	Alt keywords: `Permissions` or `Rights`
 
-+	`HTTP`, `TCP`, `COAP`, ... - Protocol specific implementation of respective affordances.
++	`HTTP`, `TCP`, `COAP`, `<other protocol>` (optional) - Protocol specific implementation of respective affordances.
 
++	`Media Types` (optional) - List of supported media type representation of respective resource attributes and affordances.
+	Might include an explicit example asset.
 
-> **Note:** Consider using Alt keywords to improve clarity for majority of users.
+> **Note:** Consider using alt keywords to improve clarity for majority of users.
+
+### Naming Attributes and Affordances
+Where possible use an undecorated plain text. In the case of a clash with a keyword and/or need for escaping to not collide with Markdown formatting use [Markdown code span element syntax](http://daringfireball.net/projects/markdown/syntax#code) e.g. `\`Attributes\``.
 
 ### Referencing Syntax
-+ 	Reference to the resource default state: `[<resource>][]`
++ 	Reference to a resource representation: `[<resource>][]`
 + 	Reference to a resource state: `[<resource>#<state>][]`
 + 	Reference to a resource affordance: `[<resource>.<affordance>][]`
 
