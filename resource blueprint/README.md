@@ -1,10 +1,16 @@
 # Resource Blueprint
-Initial proposal of resource-oriented, protocol-independent [API Blueprint](http://apiblueprint.org). Focused on modeling API resources, its attributes, affordances and an API state machine.
+Initial proposal of resource-oriented, protocol-independent [API Blueprint](http://apiblueprint.org). Focused on modeling API resources, their attributes, [affordances](http://en.wikipedia.org/wiki/Affordance) and an API state machine.
 
 ## Use Case API
-As a use-case API this proposal is built on [Gist Fox API](../examples/Gist%20Fox%20API.md). To demonstrate the description of the API state machine the Gist Fox API is extended with additional resource states.
+As a use-case API this proposal is built on [Gist Fox API](../examples/Gist%20Fox%20API.md). This example API includes:
 
-The actual proposed blueprint can be found in the [Gist API.md](Gist%20API.md) file. To view the source of the Gist API check its [raw version](https://raw.github.com/apiaryio/api-blueprint/resource-blueprint/resource%20blueprint/Gist%20API.md). Refer to [Resource Blueprint Syntax](#syntax) for explanation of new syntax constructs.
+* Entry point details
+* Gists collection resource in full detail
+* Gist entity resource in minimal detail
+
+To demonstrate the description of the API state machine the Gist Fox API is extended with additional resource states.
+The actual proposed blueprint can be found in the [Gist API.md](Gist%20API.md) file. To view the source of the Gist API 
+check its [raw version](https://raw.github.com/apiaryio/api-blueprint/resource-blueprint/resource%20blueprint/Gist%20API.md). Refer to [Resource Blueprint Syntax](#syntax) for explanation of new syntax constructs.
 
 ## Gist State Machine
 
@@ -14,7 +20,7 @@ An entry point to Resource Blueprint Gist API is the `Gists` resource in its `co
 
 ![fig1](assets/Gist%20State%20Machine%20001.png)
 
-> **Note:** Collection also serves as a factory for individual entities.
+> **Note:** Collection also serves as a factory for individual `Gist` entities.
 
 ### Gist Resource
 A `Gist` resource created by the `Gists`'s `create` affordance has following two states: `active` and `archived`:
@@ -22,11 +28,9 @@ A `Gist` resource created by the `Gists`'s `create` affordance has following two
 ![fig2](assets/Gist%20State%20Machine%20002.png)
 
 ### Embedded Entities
-Finally, a `Gist` resource embedded in the `items` attribute of a `Gists` resource can be accessed via its `self` affordance:
+Finally, an individual `Gist` resource embedded in the `items` attribute of a `Gists` resource can be accessed directly via its `self` affordance:
 
 ![fig3](assets/Gist%20State%20Machine%20003.png)
-
-> **Note:** The `Gist` Resource also specifies an undefined `Author` affordance. This is inte
 
 <a name="syntax"></a>
 ## Resource Blueprint Syntax
@@ -38,14 +42,14 @@ New keywords introduced in the Resource Blueprint are:
 
 + 	`Resource` - Definition of a resource e.g. `Resource <resource name>`.
 
-+ 	`Attributes` - Definition of resource attributes. *Alt keyword:* `Properites`.
++ 	`Attributes` - Definition of resource attributes. *Alt keyword:* `Properties`.
 
-+ 	`Affordances` (optional) - Definition of **all** resource's affordances. *Alt keywords:* `Transition`, `Actions` or `Link Relations`.
++ 	`Affordances` (optional) - Definition of **all** resource's affordances. *Alt keywords:* `Transitions`, `Actions` or `Link Relations`.
 		
 	*Optional:* A resource definition without any affordance should assume one default "show/self" affordance.
 
 + 	`States` (optional) - definition of resource states and state transitions invoked using affordances.
-	Each state should lists all available affordances the final state of using the relevant affordance in format:
+	Each state should list all available affordances and the associated final state using the relevant affordance in the format:
 
     ```
     <affordance> -> <new state>
@@ -59,23 +63,24 @@ New keywords introduced in the Resource Blueprint are:
 	Associated with business rules tied to an affordance being available or present in a response. 
 	*Alt keywords:* `Permissions` or `Rights`
 
-	*Optional:* Conditional affordances are completely optional.
+	*Optional:* Conditions on affordances are completely optional. Absent conditions, an affordance should be considered always present in a response.
 
 +	`HTTP`, `TCP`, `COAP`, `<other protocol>` (optional) - Protocol specific implementation of respective affordances.
 
 	*Optional:* Protocol section should be optional. If not present, in the case of HTTP, a default method (GET?) should be expected with a default URI constructed from the resource name and possibly affordance parameters and or name. To be decided. 
 
-+	`Media Types` (optional) - List of supported media type representation of respective resource attributes and affordances.
++	`Media Types` (optional) - List of supported media type representations of respective resource attributes and affordances.
 	Might include an explicit example asset.
 
 	*Optional:* If media types are not present a default media type should be provided possibly `application/hal+json` and `application/vnd.siren+json`
 
-	If a media type is specified by no explicit example is provided a default representation using attributes and affordances should be provided.
+	If a media type is specified but no explicit example is provided, a default representation using attributes and affordances will be
+	generated for known media-types. For unknown media-types an explicit example should be included.
 
 > **Note:** Consider using alt keywords to improve clarity for general audience.
 
 ### Naming Attributes and Affordances
-Where possible use an undecorated plain text. In the case of a clash with keyword and/or the need for escaping (to not collide with Markdown syntax) use [Markdown code span element syntax](http://daringfireball.net/projects/markdown/syntax#code) e.g. `` `Attributes` ``.
+Where possible use undecorated plain text. In the case of a clash with keyword and/or the need for escaping (to not collide with Markdown syntax) use [Markdown code span element syntax](http://daringfireball.net/projects/markdown/syntax#code) e.g. `` `Attributes` ``.
 
 ### Referencing Syntax
 + 	Reference to a resource representation: `[<resource>][]`

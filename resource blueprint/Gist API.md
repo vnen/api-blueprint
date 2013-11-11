@@ -5,31 +5,57 @@ Our Gists API.
 [Gists.list][]
 
 ## Resource Gists
-Resource Gists is a list of individual Gist pastes.
+The Gists resource is a list of individual Gist pastes.
 
 ### Attributes
-The properities of a gist collection.
+The properties of a gist collection (Gists resource).
 
 + total_count (number) - The count of gists in the collection.
-+ items (array) - The array of embedded gist entities.
+  + Metadata
+    + profile:
+      + type: semantic
++ items (array) - An array of embedded individual [Gist][] entities.
+  + Metadata
+    + profile:
+      + type: semantic
+      
 
 ### Affordances
 Link relations of a gist collection.
 
 + list - Returns the current resource.
-
-+ create - Creates a gists, adds a gist to collection.
-    + Attributes
-        + description (string) - Description of the gist.
-        + content (string) - Content of the gist.
-
+  + Metadata
+    + profile:
+      + type: safe      
++ create - Creates a gist, adds a gist to collection.
+  + Metadata
+    + profile:
+      + type: unsafe      
+  + Attributes
+    + description (string) - Description of the gist.
+      + Metadata
+        + profile:
+          + type: semantic                  
+    + content (string) - Content of the gist.
+      + Metadata
+        + profile:
+          + type: semantic
 + search - Filters results based on parameters.
-    + Parameters
-        + search_by (string) - Keyword to search on.
-        + search_by_attribute (string) - Attribute to apply search to.
-            + Values
-                + description
-                + content
+  + Metadata
+    + profile:
+      + type: safe     
+  + Parameters
+    + search_by (string) - Keyword to search on.
+      + Metadata
+        + profile:
+          + type: semantic
+    + search_by_attribute (string) - Attribute to apply search to.
+      + Metadata
+        + profile:
+          + type: semantic
+      + Values
+        + description
+        + content
 + first
 + previous
 + next
@@ -54,7 +80,7 @@ States / state machine of a gist collection.
         + search (self) -> navigation
         + list -> collection
         + create -> [Gist#active][]
-            + Conditions, Permissions, Rights
+            + Conditions
                 + can_create
                 + can_update
         + first -> navigation
@@ -87,22 +113,22 @@ HTTP protocol-specific implementation.
 
         [Gists][]
 
-+ first: GET /gists?page=1{per_page}
++ first: GET /gists?page=1{;per_page}
     + Response 200
 
         [Gists][]
 
-+ previous: GET /gists?{page,per_page} 
++ previous: GET /gists{?page,per_page} 
     + Response 200
 
         [Gists][]       
 
-+ next: GET /gists?{page,per_page}
++ next: GET /gists{?page,per_page}
     + Response 200
 
         [Gists][]
 
-+ last: GET /gists?{page,per_page}
++ last: GET /gists{?page,per_page}
     + Response 200
 
         [Gists][]
