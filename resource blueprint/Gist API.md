@@ -1,5 +1,5 @@
-# Gists API
-Our Gists API.
+# Gist API
+Gist API.
 
 ## API Entry Point
 [Gists.list][]
@@ -14,7 +14,8 @@ The properties of a gist collection (Gists resource).
   + Metadata
     + profile:
       + type: semantic
-+ items (array) - An array of embedded individual [Gist][] entities.
+
++ items (array) - An array of embedded individual Gist entities.
   + Metadata
     + profile:
       + type: semantic
@@ -27,35 +28,43 @@ Link relations of a gist collection.
   + Metadata
     + profile:
       + type: safe      
+
 + create - Creates a gist, adds a gist to collection.
   + Metadata
     + profile:
-      + type: unsafe      
+      + type: unsafe
+
   + Attributes
     + description (string) - Description of the gist.
       + Metadata
         + profile:
-          + type: semantic                  
+          + type: semantic
+
     + content (string) - Content of the gist.
       + Metadata
         + profile:
           + type: semantic
+
 + search - Filters results based on parameters.
   + Metadata
     + profile:
-      + type: safe     
+      + type: safe
+
   + Parameters
     + search_by (string) - Keyword to search on.
       + Metadata
         + profile:
           + type: semantic
+
     + search_by_attribute (string) - Attribute to apply search to.
       + Metadata
         + profile:
           + type: semantic
+
       + Values
         + description
         + content
+
 + first
 + previous
 + next
@@ -71,6 +80,7 @@ States / state machine of a gist collection.
             + Conditions
                 + can_create
                 + can_update
+
         + search -> navigation
         + next -> navigation
         + last -> navigation
@@ -83,6 +93,7 @@ States / state machine of a gist collection.
             + Conditions
                 + can_create
                 + can_update
+
         + first -> navigation
         + previous -> navigation
         + next -> navigation

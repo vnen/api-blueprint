@@ -131,7 +131,7 @@ There are **two additional** sections of an API Blueprint Document that are not 
 
 <a name="Identifiers"></a>
 ### 3.6. Identifiers 
-Several sections names might include an identifier. An identifier is any **non-empty combination** of a **alphanumerical character**, **underscore**, **dash**  and a **space** unless stated otherwise. **No other characters** (e.g. punctation or other whitespace characters) **are allowed**. An identifier **should not** include any [reserved keyword](ReservedSectionNames).
+Several sections names might include an identifier. An identifier is any **non-empty combination** of a **alphanumerical character**, **underscore**, **dash**  and a **space** unless stated otherwise. **No other characters** (e.g. punctation or other whitespace characters) **are allowed**. An identifier **should not** include any [reserved keyword](#ReservedSectionNames).
 
 Example:
 
@@ -613,7 +613,7 @@ Example:
 
 <a name="PayloadSchemaSection"></a>
 ### 5.3. Payload Schema Section
-**Optional**. Where applicable, specifies a schema used to validate this Payload's [Body Section](PayloadBodySection) content.
+**Optional**. Where applicable, specifies a schema used to validate this Payload's [Body Section](#PayloadBodySection) content.
 
 This subsection is **recognized** by the `Schema` reserved **keyword** written as a Markdown list item.
 
