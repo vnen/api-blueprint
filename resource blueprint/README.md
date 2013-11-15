@@ -1,6 +1,27 @@
 # Resource Blueprint
 Initial proposal of resource-oriented, protocol-independent [API Blueprint](http://apiblueprint.org). Focused on modeling API resources, their attributes, [affordances](http://en.wikipedia.org/wiki/Affordance) and an API state machine.
 
+## Concepts
+The following highlights the API design concepts underlying a Resource Blueprint.
+
+* Semantically define data and affordances (link relations).
+* Define a state-machine representing the resource and the transition conditions (business rules) in different states.
+    * Ideally, this should ultimately draw the state-machine as part of the design process.
+    * Will be used mock the API to act as a true hypermedia API based on state.
+* Adding metadata to elements that could be used to define a profile (e.g. ALPS) from the blueprint and other uses in 
+the machine-readable output of the API Blueprint parser.
+* Specify supported media-types.
+    * The API Blueprint parser will generate sample representations based on the semantics, state-machine and 
+    known media-types.
+* Enter protocol specific information as an implementation detail well after having designed the actual API.
+    * Initially only supports HTTP protocol.
+    * The only actual URI you will see in the human-readable version is the entry point, even though you can enter 
+    URIs in the blueprint.
+* Specify the entry point to the resource.
+
+APIs associated with specific resources can be designed individually as parts of an overall API that may span several
+resource blueprints to represent the overall API application state-machine.
+
 ## Use Case API
 As a use-case API this proposal is built on [Gist Fox API](../examples/Gist%20Fox%20API.md). This [example API](Gist%20API.md) includes:
 
