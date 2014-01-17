@@ -1,7 +1,11 @@
+![logo](https://raw.github.com/apiaryio/api-blueprint/gh-pages/assets/logo_apiblueprint.png) 
+
 # Resource Blueprint
+
 Initial proposal of resource-oriented, protocol-independent [API Blueprint](http://apiblueprint.org). Focused on modeling API resources, their attributes, [affordances](http://en.wikipedia.org/wiki/Affordance) and an API state machine.
 
 ## Concepts
+
 The following highlights the API design concepts underlying a Resource Blueprint.
 
 * Semantically define data and affordances (link relations).
