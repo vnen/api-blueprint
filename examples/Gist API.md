@@ -2,7 +2,7 @@
 Gist API.
 
 ## API Entry Point
-[Gists.list][]
+[Gists@collection][]
 
 ## Resource Gists
 The Gists resource is a list of individual Gist pastes.
@@ -10,60 +10,53 @@ The Gists resource is a list of individual Gist pastes.
 ### Attributes
 The properties of a gist collection (Gists resource).
 
-+ total_count (number) - The count of gists in the collection.
-  + Metadata
-    + profile:
-      + type: semantic
++ total_count (number) ... The total count of gists in the actual collection/selection.
+    + Traits
+        + profile_type: semantic
 
-+ items (array) - An array of embedded individual Gist entities.
-  + Metadata
-    + profile:
-      + type: semantic
-      
++ items (array) ... An array of embedded individual Gist entities.
+    + Traits
+        + profile_type: semantic
+
+    + Embeded Entities
+        + [Gist][]
 
 ### Affordances
 Link relations of a gist collection.
 
-+ list - Returns the current resource.
-  + Metadata
-    + profile:
-      + type: safe      
++ list_all ... List the complete, unfiltered collection.
+    + Traits
+        + profile_type: safe      
 
-+ create - Creates a gist, adds a gist to collection.
-  + Metadata
-    + profile:
-      + type: unsafe
++ create ... Creates a gist, adds a gist to collection.
+    + Traits
+        + profile_type: unsafe
 
   + Attributes
-    + description (string) - Description of the gist.
-      + Metadata
-        + profile:
-          + type: semantic
+        + description (string) ... Description of the gist.
+            + Traits
+                + profile_type: semantic
 
-    + content (string) - Content of the gist.
-      + Metadata
-        + profile:
-          + type: semantic
+        + content (string) ... Content of the gist.
+            + Traits
+                + profile_type: semantic
 
-+ search - Filters results based on parameters.
-  + Metadata
-    + profile:
-      + type: safe
++ search ... Filters results based on parameters.
+    + Traits
+        + profile_type: safe
 
-  + Parameters
-    + search_by (string) - Keyword to search on.
-      + Metadata
-        + profile:
-          + type: semantic
+    + Parameters
+        + search_by (string) ... Keyword to search on.
+            + Traits
+                + profile_type: semantic
 
-    + search_by_attribute (string) - Attribute to apply search to.
-      + Metadata
-        + profile:
-          + type: semantic
+        + search_by_attribute (string) ... Attribute to apply search to.
+            + Traits
+                + profile_type: semantic
 
-      + Values
-        + description
-        + content
+            + Values
+                + description
+                + content
 
 + first
 + previous
@@ -73,10 +66,10 @@ Link relations of a gist collection.
 ### States
 States / state machine of a gist collection.
 
-+ collection (entry point) - Lorem Ipsum
++ collection (entry point)
     + Affordances
         + list (self) -> collection
-        + create -> [Gist#active][]
+        + create -> [Gist@active][]
             + Conditions
                 + can_create
                 + can_update
@@ -89,7 +82,7 @@ States / state machine of a gist collection.
     + Affordances
         + search (self) -> navigation
         + list -> collection
-        + create -> [Gist#active][]
+        + create -> [Gist@active][]
             + Conditions
                 + can_create
                 + can_update
@@ -190,10 +183,10 @@ HTTP protocol-specific implementation.
         + delete (exit point)
         + archive -> archived
         + restore -> active
-        + author -> [Author#show][]
+        + author -> [Author@defaul][]
 
 + archived
     + Affordances
         + show (self) -> archived
         + restore -> active
-        + author -> [Author#show][]
+        + author -> [Author@default][]
