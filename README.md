@@ -1,32 +1,46 @@
 ![logo](https://raw.github.com/apiaryio/api-blueprint/gh-pages/assets/logo_apiblueprint.png) 
 
-# Resource Blueprint
+&nbsp;
 
-Initial proposal of resource-oriented, protocol-independent [API Blueprint](http://apiblueprint.org). Focused on 
+> “... there’s nothing about URLs, nothing about status codes. It’s all about state machines and media types.”
+>
+> *Steve Klabnik, “Designing Hypermedia APIs.”*
+
+# Resource Blueprint
+Proposal of resource-oriented, protocol-independent [API Blueprint](http://apiblueprint.org). Focused on 
 modeling API resources, their attributes, [affordances](http://en.wikipedia.org/wiki/Affordance) and an API state machine.
 
 ## Concepts
-
 The following highlights the API design concepts underlying a Resource Blueprint.
 
-* Semantically define data and affordances (link relations).
-* Define a state-machines representing a resource and its transitions in different states (business rules)
-and the conditions (permissions) for their inclusion in a response.
+* **Semantically define data and affordances** (link relations).
+* **Define state-machines** representing a resource and its transitions in different states (business rules)
+**and the conditions** (permissions) for their inclusion in a response.
     * Ideally, this should ultimately draw the state-machine as part of the design process.
     * Will be used mock the API to act as a true hypermedia API based on state.
-* Adding metadata to elements that could be used to define a profile (e.g. ALPS) from the blueprint and other uses in 
-the machine-readable output of the API Blueprint parser.
-* Specify supported media-types.
+* **Specify supported media-types.**
     * The API Blueprint parser will generate sample representations based on the semantics, state-machine and 
     known media-types.
-* Enter protocol specific information as an implementation detail well after having designed the actual API.
+* **Specify the entry point to the resource.**
+* **Adding metadata to elements** that could be used to define a profile (e.g. ALPS) from the blueprint and other uses in 
+the machine-readable output of the API Blueprint parser.
+* **Enter protocol specific information** as an implementation detail well after having designed the actual API.
     * Initially only supports HTTP protocol.
     * The only actual URI you will see in the human-readable version is the entry point, even though you can enter 
     URIs in the blueprint.
-* Specify the entry point to the resource.
 
 APIs associated with specific resources can be designed individually as parts of an overall API that may span several
 resource blueprints to represent the overall API application state-machine.
+
+---
+
+## Quick Links
++ [Use Case API](#def-use-case-api)
++ [Full Resource Blueprint Example](examples/Gist%20API.md)
++ [Resource Blueprint Syntax](#def-syntax)
++ [Credits](#def-credits)
+
+---
 
 ### Noun vs. Verb Affordances (link relations)
 The concepts of "application state" and "resource state" are a useful level abstraction as one thinks about an API and 
@@ -62,16 +76,15 @@ is not a different state of the resource from a state-machine standpoint of the 
 do with it at some point in time for the given context and conditions (permissions). To the client, it may well look 
 like a different state, but from the internals of an API it is not a separate state of a resource.
 
+<a name="def-use-case-api"></a>
 ## Use Case API
-As a use-case API this proposal is built on [Gist Fox API](../examples/Gist%20Fox%20API.md). This [example API](Gist%20API.md) includes:
+The example API used throughout this proposal is of an imaginary GitHub's Gist-like service. This example API includes:
 
 * Entry point details
-* Gists collection resource in full detail
-* Gist entity resource in minimal detail
+* Gists collection resource in minimal detail
+* Gist entity resource in full detail
 
-To demonstrate the description of the API state machine the Gist Fox API is extended with additional resource states.
-The actual proposed blueprint can be found in the [Gist API.md](Gist%20API.md) file. To view the source of the Gist API 
-check its [raw version](https://raw.github.com/apiaryio/api-blueprint/resource-blueprint/resource%20blueprint/Gist%20API.md). Refer to [Resource Blueprint Syntax](#syntax) for explanation of new syntax constructs.
+The complete, GitHub-rendered example API can be found in the [Gist API.md](examples/Gist%20API.md) file. Check its [raw version](https://raw.github.com/apiaryio/api-blueprint/resource-blueprint/examples/Gist%20API.md) to view the source blueprint. Refer to [Resource Blueprint Syntax](#def-syntax) for explanation syntax constructs.
 
 ## Gist State Machine
 
@@ -93,7 +106,7 @@ Finally, an individual `Gist` resource embedded in the `items` attribute of a `G
 
 ![fig3](assets/Gist%20State%20Machine%20003.png)
 
-<a name="syntax"></a>
+<a name="def-syntax"></a>
 ## Resource Blueprint Syntax
 
 ### Keywords
@@ -152,7 +165,12 @@ Where possible use undecorated plain text. In the case of a clash with keyword a
 +   Reference to a resource state: `[<resource>#<state>][]`
 +   Reference to a resource affordance: `[<resource>.<affordance>][]`
 
+<a name="def-credits"></a>
+## Credits
++ **Authors:** Mark W. Foster <[@fosdev](https://github.com/fosdev)>, Zdeněk Němec <[@zdne](https://github.com/zdne)>
++ **Created:** 2013-10-30
++ **Updated:** 2014-01-23
 
-## Acknowledgements
-Special thanks to [@fosdev](https://github.com/fosdev) at [Medidata Solutions](https://twitter.com/Medidata) for his 
-tremendous contribution as well as images of the Gist State Machine. 
+## License
+MIT License. See the [LICENSE](LICENSE) file.
+
