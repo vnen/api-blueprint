@@ -2,14 +2,16 @@
 
 # Resource Blueprint
 
-Initial proposal of resource-oriented, protocol-independent [API Blueprint](http://apiblueprint.org). Focused on modeling API resources, their attributes, [affordances](http://en.wikipedia.org/wiki/Affordance) and an API state machine.
+Initial proposal of resource-oriented, protocol-independent [API Blueprint](http://apiblueprint.org). Focused on 
+modeling API resources, their attributes, [affordances](http://en.wikipedia.org/wiki/Affordance) and an API state machine.
 
 ## Concepts
 
 The following highlights the API design concepts underlying a Resource Blueprint.
 
 * Semantically define data and affordances (link relations).
-* Define a state-machine representing the resource and the transition conditions (business rules) in different states.
+* Define a state-machines representing a resource and its transitions in different states (business rules)
+and the conditions (permissions) for their inclusion in a response.
     * Ideally, this should ultimately draw the state-machine as part of the design process.
     * Will be used mock the API to act as a true hypermedia API based on state.
 * Adding metadata to elements that could be used to define a profile (e.g. ALPS) from the blueprint and other uses in 
@@ -26,6 +28,40 @@ the machine-readable output of the API Blueprint parser.
 APIs associated with specific resources can be designed individually as parts of an overall API that may span several
 resource blueprints to represent the overall API application state-machine.
 
+### Noun vs. Verb Affordances (link relations)
+The concepts of "application state" and "resource state" are a useful level abstraction as one thinks about an API and 
+the affordances that exist in a response. From an API standpoint it is all transparent, you just get data and 
+links/forms. But some affordances will affect/cycle resource state more like "actions" while other affordances will 
+link to other resources and change "application state" more like nouns. 
+
+The noun driven idea about relations is strongly tied to the idea of polling options to find uniform interface verbs w/r 
+to a particular resource and moving forward. This perspective is particularly limiting in an M2M 
+situation where you want a machine to semantically understand a relation vs. a verb in the uniform interface and very possibly 
+have a situation where a service can specify the verb as part of the metadata associated with a link in a response. 
+
+Thus, a client need only understand the semantic significance of the link relation and move forward. Verb related 
+transitions/relations would be completely appropriate in that case (and more semantically rich than nouns). 
+Accommodating this type of idea is important vs. the more human-documentation centric position of understanding 
+what the verbs in the uniform interface do as a sole approach.
+
+### Resource States
+Resource state machine affordances are two-fold. There are affordances that change state in such a way that the 
+set of _possible_ affordances change and those that exercise data-state wherein some property(ies) of the resource are 
+modified but the _possible affordances_ are not affected by those changes. There are infinite of the latter. However,
+based on business rules, there are a finite number of unique sets of _possible_ affordances. These sets of affordances
+define the actual resource states.
+
+### Context and Conditions
+When a resource is in some particular state, the only affordances at any time that may be returned are a fixed set. 
+Whether or not an affordance is returned in a response is a function of context and conditions. These do not represent 
+a resource state in the state-machine, but rather a filter on the available affordances that the context gives access 
+to. 
+
+E.g. if the state has an `edit` affordance and you don't have rights to edit it, you don't see the affordance. This 
+is not a different state of the resource from a state-machine standpoint of the resource, but rather of what you can 
+do with it at some point in time for the given context and conditions (permissions). To the client, it may well look 
+like a different state, but from the internals of an API it is not a separate state of a resource.
+
 ## Use Case API
 As a use-case API this proposal is built on [Gist Fox API](../examples/Gist%20Fox%20API.md). This [example API](Gist%20API.md) includes:
 
@@ -41,11 +77,11 @@ check its [raw version](https://raw.github.com/apiaryio/api-blueprint/resource-b
 
 ### Gists Resource 
 An entry point to Resource Blueprint Gist API is the `Gists` resource in its `collection` state. This resource has two states: `collection` and 
-`navigation`:
+`filtered`:
 
 ![fig1](assets/Gist%20State%20Machine%20001.png)
 
-> **Note:** Collection also serves as a factory for individual `Gist` entities.
+> **Note:** Both states also serve as factories for individual `Gist` entities.
 
 ### Gist Resource
 A `Gist` resource created by the `Gists`'s `create` affordance has following two states: `active` and `archived`:
@@ -118,4 +154,5 @@ Where possible use undecorated plain text. In the case of a clash with keyword a
 
 
 ## Acknowledgements
-Special thanks to @fosdev for his tremendous contribution as well as images of the Gist State Machine. 
+Special thanks to [@fosdev](https://github.com/fosdev) at [Medidata Solutions](https://twitter.com/Medidata) for his 
+tremendous contribution as well as images of the Gist State Machine. 
