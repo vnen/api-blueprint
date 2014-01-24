@@ -121,7 +121,7 @@ Represented in resource blueprint as:
 
 + archived
     + Affordances
-        + show(self) -> archived
+        + self(show) -> archived
         + restore -> active
         + author -> [Author@default][]
 ```

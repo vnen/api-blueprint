@@ -180,7 +180,7 @@ HTTP protocol-specific implementation.
 ### States
 + active
     + Affordances
-        + show (self) -> active
+        + self(show) -> active
         + edit -> active
         + delete -> (exit point)
         + archive -> archived
@@ -188,6 +188,6 @@ HTTP protocol-specific implementation.
 
 + archived
     + Affordances
-        + show (self) -> archived
+        + self(show) -> archived
         + restore -> active
         + author -> [Author@default][]
