@@ -18,13 +18,13 @@ The properties of a gist collection (Gists resource).
     + Traits
         + profile_type: semantic
 
-    + Embeded Entities
+    + Embedded Entities
         + [Gist][]
 
 ### Affordances
 Link relations of a gist collection.
 
-+ list_all ... List the complete, unfiltered collection.
++ list ... List the complete, unfiltered collection.
     + Traits
         + profile_type: safe      
 
@@ -68,7 +68,7 @@ States / state machine of a gist collection.
 
 + collection (entry point)
     + Affordances
-        + list (self) -> collection
+        + self(list) -> collection
         + create -> [Gist@active][]
             + Conditions
                 + can_create
@@ -78,9 +78,9 @@ States / state machine of a gist collection.
         + next -> navigation
         + last -> navigation
 
-+ navigation
++ selection
     + Affordances
-        + search (self) -> navigation
+        + self(search) -> navigation
         + list -> collection
         + create -> [Gist@active][]
             + Conditions
@@ -180,9 +180,8 @@ HTTP protocol-specific implementation.
     + Affordances
         + show (self) -> active
         + edit -> active
-        + delete (exit point)
+        + delete -> (exit point)
         + archive -> archived
-        + restore -> active
         + author -> [Author@defaul][]
 
 + archived

@@ -14,16 +14,17 @@ modeling API resources, their attributes, [affordances](http://en.wikipedia.org/
 The following highlights the API design concepts underlying a Resource Blueprint.
 
 * **Semantically define data and affordances** (link relations).
-* **Define state-machines** representing a resource and its transitions in different states (business rules)
-**and the conditions** (permissions) for their inclusion in a response.
+* **Define state-machines** representing a resource.
+    * Includes transitions in different states (business rules) and the conditions (permissions) for their inclusion 
+    in a response.
     * Ideally, this should ultimately draw the state-machine as part of the design process.
     * Will be used mock the API to act as a true hypermedia API based on state.
 * **Specify supported media-types.**
     * The API Blueprint parser will generate sample representations based on the semantics, state-machine and 
     known media-types.
 * **Specify the entry point to the resource.**
-* **Adding metadata to elements** that could be used to define a profile (e.g. ALPS) from the blueprint and other uses in 
-the machine-readable output of the API Blueprint parser.
+* **Adding metadata to elements** that could be used to define a profile (e.g. [ALPS](http://alps.io/spec/index.html)) 
+from the blueprint and other uses in the machine-readable output of the API Blueprint parser.
 * **Enter protocol specific information** as an implementation detail well after having designed the actual API.
     * Initially only supports HTTP protocol.
     * The only actual URI you will see in the human-readable version is the entry point, even though you can enter 
@@ -45,7 +46,7 @@ resource blueprints to represent the overall API application state-machine.
 
 <a name="def-use-case-api"></a>
 ## Use Case - Gist API State Machine
-The example API used throughout this proposal is of an imaginary GitHub's Gist-like service. This example API demonstrates **Gist API State Machine** on the `Gists collection` and `Gist entity` resources.
+The example API used throughout this proposal is of an imaginary GitHub's Gist-like service. This example API demonstrates **Gist API State Machine** on the `Gists` (collection) and `Gist` (entity) resources.
 
 ### Gists Resource 
 An entry point to Resource Blueprint Gist API is the `Gists` resource in its `collection` state. This resource has two states: `collection` and 
@@ -62,21 +63,21 @@ This diagram translates to the following resource blueprint:
  ... 
 
 ### Affordances
-+ list_all
++ list
 + create
 + search
 
 ### States
 + collection (entry point)
     + Affordances
-        + list_all (self) -> collection
+        + self(list) -> collection
         + create -> [Gist@active][]
         + search -> selection
 
 + selection
     + Affordances
-        + search (self) -> selection
-        + list_all -> collection
+        + self(search) -> selection
+        + list -> collection
         + create -> [Gist@active][]
 ```
 
@@ -107,16 +108,15 @@ Represented in resource blueprint as:
 ### States
 + active
     + Affordances
-        + show (self) -> active
+        + self(show) -> active
         + edit -> active
-        + delete (exit point)
+        + delete -> (exit point)
         + archive -> archived
-        + restore -> active
         + author -> [Author@default][]
 
 + archived
     + Affordances
-        + show (self) -> archived
+        + show(self) -> archived
         + restore -> active
         + author -> [Author@default][]
 ```
@@ -133,7 +133,7 @@ Finally, an individual `Gist` resource embedded in the `items` attribute of a `G
 + total_count (number) ... The total count of gists in the actual collection/selection.
 
 + items (array) ... An array of embedded individual Gist entities.
-    + Embeded Entities
+    + Embedded Entities
         + [Gist][]
 ```
 
@@ -187,7 +187,7 @@ New keywords introduced in the Resource Blueprint are:
 
 +   `Metadata` ... Specific metadata as [planned for Format 1A](https://github.com/apiaryio/api-blueprint/issues/38). 
     
-    The Gists Resource of *Gist API* demonstrates additional metadata to be used for generating an [ALPS profile](http://amundsen.com/hypermedia/profiles/). 
+    The Gists Resource of *Gist API* demonstrates additional metadata to be used for generating an [ALPS profile](http://alps.io/spec). 
 
 > **Note:** Consider using `Alt keywords` instead of proposed keywords to improve clarity for general audience.
 
