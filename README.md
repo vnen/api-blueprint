@@ -60,7 +60,8 @@ This diagram translates to the following resource blueprint:
 ## Resource Gists
 
 ### Attributes
- ... 
++ total_count
++ items
 
 ### Affordances
 + list
@@ -95,6 +96,10 @@ Represented in resource blueprint as:
 ## Resource Gist
 
 ### Attributes
++ id
++ description
++ content
+
  ...
 
 ### Affordances
@@ -135,6 +140,13 @@ Finally, an individual `Gist` resource embedded in the `items` attribute of a `G
 + items (array) ... An array of embedded individual Gist entities.
     + Embedded Entities
         + [Gist][]
+
+### Affordances
++ list
++ create
++ search
+
+ ...
 ```
 
 <a name="def-full-example"></a>
@@ -155,6 +167,9 @@ New keywords introduced in the Resource Blueprint are:
 +   `Resource` ... Definition of a resource `Resource <resource name>`.
 
 +   `Attributes` ... Definition of resource attributes. *Alt keyword:* `Properties`.
+
+
++   `Embedded Entities` ... Reference to one or more resource entities embedded in given resource attribute.
 
 +   `Affordances` ... Definition of **all** resource's affordances. *Alt keywords:* `Transitions`, `Actions` or `Link Relations`.
         
@@ -185,9 +200,9 @@ New keywords introduced in the Resource Blueprint are:
     If a media type is specified but no explicit example is provided, a default representation using attributes and affordances should be
     generated for known media-types. For not recognized media-types an explicit example should be included.
 
-+   `Metadata` ... Specific metadata as [planned for Format 1A](https://github.com/apiaryio/api-blueprint/issues/38). 
++   `Traits` ... An arbitrary API Blueprint object traits. Used to specficy additional object characteristic or metadata related to object. Refer to [API Blueprint Traits](https://github.com/apiaryio/api-blueprint/issues/47) for details.
     
-    The Gists Resource of *Gist API* demonstrates additional metadata to be used for generating an [ALPS profile](http://alps.io/spec). 
+    > **Note:** The Gists Resource of the full Gist API example demonstrates additional metadata to be used for generating an [ALPS profile](http://alps.io/spec). 
 
 > **Note:** Consider using `Alt keywords` instead of proposed keywords to improve clarity for general audience.
 
@@ -239,7 +254,7 @@ like a different state, but from the internals of an API it is not a separate st
 ## Credits
 + **Authors:** Mark W. Foster <[@fosdev](https://github.com/fosdev)>, Zdeněk Němec <[@zdne](https://github.com/zdne)>
 + **Created:** 2013-10-30
-+ **Updated:** 2014-01-23
++ **Updated:** 2014-01-24
 
 ## License
 MIT License. See the [LICENSE](LICENSE) file.

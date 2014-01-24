@@ -18,9 +18,6 @@ The properties of a gist collection (Gists resource).
     + Traits
         + profile_type: semantic
 
-    + Embedded Entities
-        + [Gist][]
-
 ### Affordances
 Link relations of a gist collection.
 
@@ -154,7 +151,12 @@ HTTP protocol-specific implementation.
 + application/json
     
     ```json
-    { ... }
+    {
+        "id": "012345",
+        "name": "My Gist",
+
+        ...
+    }
     ```
 
 ## Resource Gist
@@ -182,7 +184,7 @@ HTTP protocol-specific implementation.
         + edit -> active
         + delete -> (exit point)
         + archive -> archived
-        + author -> [Author@defaul][]
+        + author -> [Author@default][]
 
 + archived
     + Affordances
