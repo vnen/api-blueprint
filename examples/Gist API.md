@@ -17,6 +17,8 @@ The properties of a gist collection (Gists resource).
 + items (array) ... An array of embedded individual Gist entities.
     + Traits
         + profile_type: semantic
+    + Embedded Entities
+        + [Gist][]        
 
 ### Affordances
 Link relations of a gist collection.
