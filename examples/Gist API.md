@@ -73,23 +73,23 @@ States / state machine of a gist collection.
                 + can_create
                 + can_update
 
-        + search -> navigation
-        + next -> navigation
-        + last -> navigation
+        + search -> selection
+        + next -> selection
+        + last -> selection
 
 + selection
     + Affordances
-        + self(search) -> navigation
+        + self(search) -> selection
         + list -> collection
         + create -> [Gist@active][]
             + Conditions
                 + can_create
                 + can_update
 
-        + first -> navigation
-        + previous -> navigation
-        + next -> navigation
-        + last -> navigation
+        + first -> selection
+        + previous -> selection
+        + next -> selection
+        + last -> selection
 
 ### HTTP
 HTTP protocol-specific implementation. 
