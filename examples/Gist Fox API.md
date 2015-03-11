@@ -24,7 +24,7 @@ HAL links.
 
 + Response 200 (application/hal+json)
     + Headers
-    
+
             Link: <http:/api.gistfox.com/>;rel="self",<http:/api.gistfox.com/gists>;rel="gists"
 
     + Body
@@ -44,10 +44,10 @@ A single Gist object. The Gist resource is the central resource in the Gist Fox 
 
 The Gist resource has the following attributes: 
 
-- id
-- created_at
-- description
-- content
++ id
++ created_at
++ description
++ content
 
 The states *id* and *created_at* are assigned by the Gist Fox API at the moment of creation. 
 
@@ -68,7 +68,7 @@ The states *id* and *created_at* are assigned by the Gist Fox API at the moment 
             {
                 "_links": {
                     "self": { "href": "/gists/42" },
-                    "star": { "href": "/gists/42/star" },
+                    "star": { "href": "/gists/42/star" }
                 },
                 "id": "42",
                 "created_at": "2014-04-14T02:15:15Z",
@@ -102,7 +102,7 @@ Collection of all Gists.
 
 The Gist Collection resource has the following attribute:
 
-- total
++ total
 
 In addition it **embeds** *Gist Resources* in the Gist Fox API.
 
@@ -163,7 +163,7 @@ Star resource represents a Gist starred status.
 
 The Star resource has the following attribute:
 
-- starred
++ starred
 
 
 + Parameters
@@ -182,7 +182,7 @@ The Star resource has the following attribute:
 
             {
                 "_links": {
-                    "self": { "href": "/gists/42/star" },
+                    "self": { "href": "/gists/42/star" }
                 },
                 "starred": true
             }

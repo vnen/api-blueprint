@@ -24,7 +24,7 @@ HAL links.
 
 + Response 200 (application/hal+json)
     + Headers
-    
+
             Link: <http:/api.gistfox.com/>;rel="self",<http:/api.gistfox.com/gists>;rel="gists",<http:/api.gistfox.com/authorization>;rel="authorization"
 
     + Body
@@ -32,7 +32,7 @@ HAL links.
             {
                 "_links": {
                     "self": { "href": "/" },
-                    "gists": { "href": "/gists?{since}", "templated": true }
+                    "gists": { "href": "/gists?{since}", "templated": true },
                     "authorization": { "href": "/authorization"}
                 }
             }
@@ -45,10 +45,10 @@ A single Gist object. The Gist resource is the central resource in the Gist Fox 
 
 The Gist resource has the following attributes: 
 
-- id
-- created_at
-- description
-- content
++ id
++ created_at
++ description
++ content
 
 The states *id* and *created_at* are assigned by the Gist Fox API at the moment of creation. 
 
@@ -103,7 +103,7 @@ Collection of all Gists.
 
 The Gist Collection resource has the following attribute:
 
-- total
++ total
 
 In addition it **embeds** *Gist Resources* in the Gist Fox API.
 
@@ -147,7 +147,7 @@ In addition it **embeds** *Gist Resources* in the Gist Fox API.
 ### Create a Gist [POST]
 To create a new Gist simply provide a JSON hash of the *description* and *content* attributes for the new Gist. 
 
-This action requries an `access_token` with `gist_write` scope. 
+This action requires an `access_token` with `gist_write` scope. 
 
 + Parameters
     + access_token (string, optional) ... Gist Fox API access token.
@@ -168,7 +168,7 @@ Star resource represents a Gist starred status.
 
 The Star resource has the following attribute:
 
-- starred
++ starred
 
 + Parameters
     + id (string) ... ID of the gist in the form of a hash
@@ -192,12 +192,12 @@ The Star resource has the following attribute:
             }
 
 ### Star a Gist [PUT]
-This action requries an `access_token` with `gist_write` scope. 
+This action requires an `access_token` with `gist_write` scope. 
 
 + Response 204
 
 ### Unstar a Gist [DELETE]
-This action requries an `access_token` with `gist_write` scope. 
+This action requires an `access_token` with `gist_write` scope. 
 
 + Response 204
 
@@ -214,8 +214,8 @@ Authorization Resource represents an authorization granted to the user. You can 
 
 The Authorization Resource has the following attribute:
 
-- token
-- scopes
++ token
++ scopes
 
 Where *token* represents an OAuth token and *scopes* is an array of scopes granted for the given authorization. At this moment the only available scope is `gist_write`.
 
